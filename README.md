@@ -59,8 +59,8 @@
 1.  **下載專案：**
     * 如果您使用 Git，可以克隆本儲存庫：
         ```bash
-        git clone [你的專案的 GitHub 連結]
-        cd [你的專案資料夾名稱，例如：automated-tennis-system]
+        git clone [https://github.com/jirong-spec/automated-tennis-system]
+        cd [automated-tennis-system]
         ```
     * 如果沒有 Git，您可以直接下載專案的壓縮檔並解壓縮。
 
