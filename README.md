@@ -183,4 +183,4 @@
 
 ## 許可證
 
-[請在此處填寫您的專案許可證類型，例如 MIT License, Apache License 2.0 等]
+本專案採用 **MIT License** 授權。詳情請參閱專案根目錄下的 `LICENSE` 檔案。
