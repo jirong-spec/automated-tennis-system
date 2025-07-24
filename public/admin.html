@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>12球場比賽管理（管理版）</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .court { border: 2px solid #333; border-radius: 8px; padding: 10px; }
+    .player-row { display: flex; align-items: center; margin-top: 6px; }
+    .player-row input[type="text"] { font-size: 14px; padding: 4px; }
+    .name-input { flex: 1; margin-right: 6px; }
+    .score-input { width: 50px; text-align: center; }
+    textarea { width: 100%; font-size: 14px; margin-top: 10px; resize: vertical; }
+    select { width: 100%; margin-top: 8px; font-size: 14px; padding: 4px; }
+    button { margin-top: 10px; padding: 6px 12px; font-size: 14px; display: block; width: 100%; }
+    #ai-status { font-weight: bold; color: green; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+<h1>12球場比賽管理（管理版）</h1>
+<div id="ai-status">⚙️ 後端自動模式已啟動，將持續更新比分與排程....</div>
+<div id="courts-container" class="grid"></div>
+
+<script>
+  const API_BASE = "http://172.20.10.2:3000";  // ← 換成你的實際 server IP
+  let courtsCache = [];
+
+  async function loadCourts() {
+    try {
+      const res = await fetch(`${API_BASE}/courts`);
+      const courtsData = await res.json();
+      courtsCache = courtsData;
+      renderCourts(courtsData);
+    } catch (e) {
+      alert("❌ 無法讀取球場資料");
+    }
+  }
+
+  function renderCourts(data) {
+    const container = document.getElementById("courts-container");
+    container.innerHTML = "";
+
+    data.forEach((court, i) => {
+      const div = document.createElement("div");
+      div.className = "court";
+      div.innerHTML = `
+        <h3 style="text-align:center;">球場 ${i + 1}</h3>
+        <div class="player-row">
+          <input type="text" id="player1-${i}" value="${court.player1}" placeholder="選手1姓名" class="name-input" />
+          <input type="text" id="score1-${i}" value="${court.score1}" class="score-input" placeholder="比分" />
+        </div>
+        <div class="player-row">
+          <input type="text" id="player2-${i}" value="${court.player2}" placeholder="選手2姓名" class="name-input" />
+          <input type="text" id="score2-${i}" value="${court.score2}" class="score-input" placeholder="比分" />
+        </div>
+        <textarea id="nextPlayers-${i}" placeholder="下一場比賽選手名單" rows="3">${court.nextPlayers || ""}</textarea>
+        <div id="status-${i}" style="margin-top:8px;font-weight:bold;">
+          ${court.status || "未知狀態"}
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+// 保存單一球場資料的函數（此功能在此版本中未直接使用，但保留）
+  async function saveCourt(index) {
+    // 注意: 你的 server.js 似乎沒有 /courts/:index 的 POST 路由來更新單一球場。
+    // 如果需要此功能，需在 server.js 中新增。
+    // 目前主要依靠後端自動更新 courts.json。
+    console.warn("saveCourt 函數在此版本中未被直接調用，因為後端負責自動更新。");
+  }
+
+  
+// 當頁面載入完成時執行
+  window.onload = async function () {
+    await loadCourts(); // 首次載入球場資料
+
+    // 設定一個計時器，每 5 秒重新載入資料，讓前端頁面自動顯示後端更新的最新狀態。
+    // 這樣，管理介面就能即時反映由 server.js 自動觸發的 AI 辨識和排程結果。
+    setInterval(async () => {
+      console.log("🌐 前端正在重新載入資料以同步後端更新...");
+      await loadCourts();
+    }, 5000); // 你可以根據需要調整刷新頻率 (例如 5000 毫秒 = 5 秒)
+  };
+  
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>12球場比賽管理（觀看版）</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .court { border: 2px solid #333; border-radius: 8px; padding: 10px; }
+    .player-row {
+      display: flex;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .player-row input[type="text"] {
+      font-size: 14px;
+      padding: 4px;
+    }
+    .name-input {
+      flex: 1;
+      margin-right: 6px;
+    }
+    .score-input {
+      width: 50px;
+      text-align: center;
+    }
+    textarea {
+      width: 100%;
+      font-size: 14px;
+      margin-top: 10px;
+      resize: vertical;
+    }
+    select {
+      width: 100%;
+      margin-top: 8px;
+      font-size: 14px;
+      padding: 4px;
+    }
+    button {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>12球場比賽管理（觀看版）</h1>
+<div id="courts-container" class="grid"></div>
+
+<script>
+  const API_BASE = "http://172.20.10.2:3000"; // 請改成你的 API 地址
+
+  async function loadCourts() {
+    try {
+      const res = await fetch(`${API_BASE}/courts`);
+      const courtsData = await res.json();
+      renderCourts(courtsData);
+    } catch (e) {
+      alert("無法讀取球場資料");
+    }
+  }
+
+  function renderCourts(data) {
+    const container = document.getElementById("courts-container");
+    container.innerHTML = "";
+
+    data.forEach((court, i) => {
+      const div = document.createElement("div");
+      div.className = "court";
+      div.innerHTML = `
+        <h3 style="text-align:center;">球場 ${i + 1}</h3>
+
+        <div class="player-row">
+          <input type="text" value="${court.player1}" class="name-input" disabled />
+          <input type="text" value="${court.score1}" class="score-input" disabled />
+        </div>
+
+        <div class="player-row">
+          <input type="text" value="${court.player2}" class="name-input" disabled />
+          <input type="text" value="${court.score2}" class="score-input" disabled />
+        </div>
+
+        <textarea rows="3" disabled>${court.nextPlayers}</textarea>
+
+        <select disabled>
+          <option ${court.status === "尚未開始" ? "selected" : ""}>尚未開始</option>
+          <option ${court.status === "進行中" ? "selected" : ""}>進行中</option>
+          <option ${court.status === "已結束" ? "selected" : ""}>已結束</option>
+        </select>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  window.onload = async function () {
+    await loadCourts();
+    setInterval(loadCourts, 30000); // 30秒自動更新
+  };
+</script>
+
+</body>
+</html>

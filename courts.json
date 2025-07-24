@@ -1,98 +1,134 @@
 [
   {
-    "player1": "楊季榮",
-    "score1": "6",
-    "player2": "方筱豬",
-    "score2": "1",
+    "id": "Court 1",
+    "player1": "",
+    "score1": null,
+    "player2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 2",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 3",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 4",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 5",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 6",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 7",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 8",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 9",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 10",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 11",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   },
   {
+    "id": "Court 12",
     "player1": "",
-    "score1": "",
+    "score1": null,
     "player2": "",
-    "score2": "",
+    "score2": null,
     "nextPlayers": "",
-    "status": "尚未開始"
+    "status": "空閒",
+    "next_match_number": null,
+    "current_match_number": null
   }
 ]
